@@ -1,18 +1,31 @@
 plugins {
     alias(libs.plugins.android.application)
+    alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.google.services)
-    id("org.jetbrains.kotlin.plugin.serialization") version "2.3.21"
+    id("org.jetbrains.kotlin.plugin.serialization") version "2.0.21"
 }
 
 android {
     namespace = "com.emi.devicemanagercustomer"
-    compileSdk = 36 // Change this line: remove 'release(36)'
+    compileSdk = 35
+
+    signingConfigs {
+        create("releaseConfig") {
+            storeFile = file("D:\\package\\DeviceManagerCustomer\\new_key.jks")
+            storePassword = "1234567890"
+            keyAlias = "key0"
+            keyPassword = "1234567890"
+
+            enableV1Signing = true
+            enableV2Signing = true
+        }
+    }
 
     defaultConfig {
         applicationId = "com.emi.devicemanagercustomer"
         minSdk = 24
-        targetSdk = 36
+        targetSdk = 35
         versionCode = 1
         versionName = "1.0"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
@@ -25,18 +38,26 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+            signingConfig = signingConfigs.getByName("releaseConfig")
         }
     }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
     }
+
     buildFeatures {
         compose = true
+    }
+
+    kotlinOptions {
+        jvmTarget = "17"
     }
 }
 
 dependencies {
+    implementation(libs.androidx.fragment.ktx)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
@@ -44,13 +65,14 @@ dependencies {
     implementation(libs.androidx.compose.ui)
     implementation(libs.androidx.compose.ui.graphics)
     implementation(libs.androidx.compose.ui.tooling.preview)
-    implementation (libs.androidx.navigation.compose)
+    implementation(libs.androidx.navigation.compose)
     implementation(libs.kotlinx.serialization.json)
     implementation(libs.androidx.compose.material3)
     implementation(libs.androidx.work.runtime.ktx)
-    implementation(libs.firebase.messaging)
     implementation(libs.androidx.compose.runtime)
     implementation(libs.androidx.games.activity)
+    implementation(libs.androidx.runtime)
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -62,8 +84,18 @@ dependencies {
     implementation(libs.retrofit)
     implementation(libs.converter.gson)
 
-    // Firebase Cloud Messaging (FCM)
     implementation(platform(libs.firebase.bom))
     implementation(libs.firebase.messaging)
-    implementation("androidx.compose.material:material-icons-extended")
+
+    // 🌟 Correct accessor mapping to our unique, non-conflicting key
+    implementation(libs.material.icons.extended)
+
+    // CameraX Hardware Viewfinder Engine
+    implementation(libs.androidx.camera.core)
+    implementation(libs.androidx.camera.camera2)
+    implementation(libs.androidx.camera.lifecycle)
+    implementation(libs.androidx.camera.view)
+
+    // Google ML Kit Decoder Tool
+    implementation(libs.google.mlkit.barcode.scanning)
 }

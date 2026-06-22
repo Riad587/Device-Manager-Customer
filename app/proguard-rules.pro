@@ -1,3 +1,6 @@
+# Prevent R8 / ProGuard from trimming or obfuscating your device admin profile receiver
+-keep class com.emi.devicemanagercustomer.services.MyDeviceAdminReceiver { *; }
+-keep public class * extends android.app.admin.DeviceAdminReceiver { *; }
 # Add project specific ProGuard rules here.
 # You can control the set of applied configuration files using the
 # proguardFiles setting in build.gradle.

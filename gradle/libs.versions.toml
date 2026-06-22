@@ -1,25 +1,34 @@
 [versions]
-agp = "9.0.1"
-converterGson = "3.0.0"
-coreKtx = "1.18.0"
-firebaseBom = "34.12.0"
+agp = "8.13.2"
+converterGson = "2.11.0"
+coreKtx = "1.15.0"
+firebaseBom = "33.9.0"
 junit = "4.13.2"
-junitVersion = "1.3.0"
-espressoCore = "3.7.0"
-kotlinxSerializationJson = "1.11.0"
-lifecycleRuntimeKtx = "2.10.0"
-activityCompose = "1.13.0"
-kotlin = "2.3.21"
-composeBom = "2026.04.01"
-navigationCompose = "2.9.8"
-retrofit = "3.0.0"
-workRuntimeKtx = "2.11.2"
+junitVersion = "1.2.1"
+espressoCore = "3.6.1"
+kotlinxSerializationJson = "1.7.3"
+lifecycleRuntimeKtx = "2.8.7"
+activityCompose = "1.9.3"
+kotlin = "2.0.21"
+composeBom = "2024.10.01"
+navigationCompose = "2.8.3"
+retrofit = "2.11.0"
+workRuntimeKtx = "2.10.0"
 googleServices = "4.4.2"
-firebaseMessaging = "25.0.1"
-runtime = "1.11.0"
-gamesActivity = "4.4.1"
+firebaseMessaging = "24.1.0"
+runtime = "1.7.5"
+gamesActivity = "3.0.5"
+fragmentKtx = "1.8.5"
+coreKtxVersion = "1.18.0"
+runtimeVersion = "1.11.2"
+
+# CameraX & ML Kit Version Hooks
+camerax = "1.4.0"
+mlkitBarcode = "17.3.0"
+materialIconsExtended = "1.7.5"
 
 [libraries]
+androidx-fragment-ktx = { group = "androidx.fragment", name = "fragment-ktx", version.ref = "fragmentKtx" }
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 androidx-navigation-compose = { module = "androidx.navigation:navigation-compose", version.ref = "navigationCompose" }
 converter-gson = { module = "com.squareup.retrofit2:converter-gson", version.ref = "converterGson" }
@@ -43,9 +52,22 @@ retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit
 androidx-work-runtime-ktx = { group = "androidx.work", name = "work-runtime-ktx", version.ref = "workRuntimeKtx" }
 androidx-compose-runtime = { group = "androidx.compose.runtime", name = "runtime", version.ref = "runtime" }
 androidx-games-activity = { group = "androidx.games", name = "games-activity", version.ref = "gamesActivity" }
+core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtxVersion" }
+androidx-runtime = { group = "androidx.compose.runtime", name = "runtime", version.ref = "runtimeVersion" }
 
+# 🌟 Re-keyed to avoid name collisions in build.gradle.kts (Changed from hyphens to a secure distinct alias)
+material-icons-extended = { group = "androidx.compose.material", name = "material-icons-extended", version.ref = "materialIconsExtended" }
+# CameraX Stack Dependencies
+androidx-camera-core = { group = "androidx.camera", name = "camera-core", version.ref = "camerax" }
+androidx-camera-camera2 = { group = "androidx.camera", name = "camera-camera2", version.ref = "camerax" }
+androidx-camera-lifecycle = { group = "androidx.camera", name = "camera-lifecycle", version.ref = "camerax" }
+androidx-camera-view = { group = "androidx.camera", name = "camera-view", version.ref = "camerax" }
+
+# Google ML Kit Vision Barcode Module
+google-mlkit-barcode-scanning = { group = "com.google.mlkit", name = "barcode-scanning", version.ref = "mlkitBarcode" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
 kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 google-services = { id = "com.google.gms.google-services", version.ref = "googleServices" }
+kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
