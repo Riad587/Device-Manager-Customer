@@ -1,7 +1,8 @@
 [versions]
 agp = "8.13.2"
 converterGson = "2.11.0"
-coreKtx = "1.15.0"
+# 🛠️ DOWNGRADED: Safe for API 34/33 compile and deployment targets
+coreKtx = "1.12.0"
 firebaseBom = "33.9.0"
 junit = "4.13.2"
 junitVersion = "1.2.1"
@@ -10,17 +11,16 @@ kotlinxSerializationJson = "1.7.3"
 lifecycleRuntimeKtx = "2.8.7"
 activityCompose = "1.9.3"
 kotlin = "2.0.21"
+# 🎨 COMPOSE: Safe 2024 production release mapping
 composeBom = "2024.10.01"
 navigationCompose = "2.8.3"
 retrofit = "2.11.0"
-workRuntimeKtx = "2.10.0"
+# 🛠️ DOWNGRADED: Strong enterprise version matching background limitations
+workRuntimeKtx = "2.9.1"
 googleServices = "4.4.2"
 firebaseMessaging = "24.1.0"
-runtime = "1.7.5"
 gamesActivity = "3.0.5"
 fragmentKtx = "1.8.5"
-coreKtxVersion = "1.18.0"
-runtimeVersion = "1.11.2"
 
 # CameraX & ML Kit Version Hooks
 camerax = "1.4.0"
@@ -39,6 +39,8 @@ androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "j
 androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
 androidx-lifecycle-runtime-ktx = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "lifecycleRuntimeKtx" }
 androidx-activity-compose = { group = "androidx.activity", name = "activity-compose", version.ref = "activityCompose" }
+
+# 📦 Jetpack Compose Stack (Managed safely by BOM version)
 androidx-compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "composeBom" }
 androidx-compose-ui = { group = "androidx.compose.ui", name = "ui" }
 androidx-compose-ui-graphics = { group = "androidx.compose.ui", name = "ui-graphics" }
@@ -47,23 +49,19 @@ androidx-compose-ui-tooling-preview = { group = "androidx.compose.ui", name = "u
 androidx-compose-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
 androidx-compose-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }
 androidx-compose-material3 = { group = "androidx.compose.material3", name = "material3" }
+androidx-compose-runtime = { group = "androidx.compose.runtime", name = "runtime" }
+androidx-runtime = { group = "androidx.compose.runtime", name = "runtime" }
+
 kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinxSerializationJson" }
 retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit" }
 androidx-work-runtime-ktx = { group = "androidx.work", name = "work-runtime-ktx", version.ref = "workRuntimeKtx" }
-androidx-compose-runtime = { group = "androidx.compose.runtime", name = "runtime", version.ref = "runtime" }
 androidx-games-activity = { group = "androidx.games", name = "games-activity", version.ref = "gamesActivity" }
-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtxVersion" }
-androidx-runtime = { group = "androidx.compose.runtime", name = "runtime", version.ref = "runtimeVersion" }
 
-# 🌟 Re-keyed to avoid name collisions in build.gradle.kts (Changed from hyphens to a secure distinct alias)
 material-icons-extended = { group = "androidx.compose.material", name = "material-icons-extended", version.ref = "materialIconsExtended" }
-# CameraX Stack Dependencies
 androidx-camera-core = { group = "androidx.camera", name = "camera-core", version.ref = "camerax" }
 androidx-camera-camera2 = { group = "androidx.camera", name = "camera-camera2", version.ref = "camerax" }
 androidx-camera-lifecycle = { group = "androidx.camera", name = "camera-lifecycle", version.ref = "camerax" }
 androidx-camera-view = { group = "androidx.camera", name = "camera-view", version.ref = "camerax" }
-
-# Google ML Kit Vision Barcode Module
 google-mlkit-barcode-scanning = { group = "com.google.mlkit", name = "barcode-scanning", version.ref = "mlkitBarcode" }
 
 [plugins]

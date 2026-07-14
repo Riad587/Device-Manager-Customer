@@ -8,24 +8,30 @@ plugins {
 
 android {
     namespace = "com.emi.devicemanagercustomer"
-    compileSdk = 35
+
+    // 🚀 Matches MDM Test App's pattern exactly
+    compileSdk {
+        version = release(36)
+    }
 
     signingConfigs {
         create("releaseConfig") {
-            storeFile = file("D:\\package\\DeviceManagerCustomer\\new_key.jks")
+            storeFile = file("../new_key.jks")
             storePassword = "1234567890"
             keyAlias = "key0"
             keyPassword = "1234567890"
 
             enableV1Signing = true
             enableV2Signing = true
+            enableV3Signing = true
+            enableV4Signing = true
         }
     }
 
     defaultConfig {
         applicationId = "com.emi.devicemanagercustomer"
-        minSdk = 24
-        targetSdk = 35
+        minSdk = 30
+        targetSdk = 36
         versionCode = 1
         versionName = "1.0"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
@@ -42,9 +48,10 @@ android {
         }
     }
 
+    // 🚀 Matches Java bytecode specifications of the Test App
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_17
-        targetCompatibility = JavaVersion.VERSION_17
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
     }
 
     buildFeatures {
@@ -52,7 +59,7 @@ android {
     }
 
     kotlinOptions {
-        jvmTarget = "17"
+        jvmTarget = "11"
     }
 }
 
@@ -87,15 +94,14 @@ dependencies {
     implementation(platform(libs.firebase.bom))
     implementation(libs.firebase.messaging)
 
-    // 🌟 Correct accessor mapping to our unique, non-conflicting key
     implementation(libs.material.icons.extended)
 
-    // CameraX Hardware Viewfinder Engine
+    // CameraX
     implementation(libs.androidx.camera.core)
     implementation(libs.androidx.camera.camera2)
     implementation(libs.androidx.camera.lifecycle)
     implementation(libs.androidx.camera.view)
 
-    // Google ML Kit Decoder Tool
+    // ML Kit
     implementation(libs.google.mlkit.barcode.scanning)
 }
